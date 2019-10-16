@@ -9,67 +9,76 @@ import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button btnIncrement, btnDecrement, btnOrder;
     int quantity = 0;
+    Button buttonIncrement, buttonDecrement, buttonOrder;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        btnIncrement = findViewById(R.id.btnIncrement);
-        btnDecrement = findViewById(R.id.btnDecrement);
-        btnOrder = findViewById(R.id.btnOrder);
+        buttonIncrement = findViewById(R.id.btnIncrement);
+        buttonDecrement = findViewById(R.id.btnDecrement);
+        buttonOrder = findViewById(R.id.btnOrder);
 
-        btnIncrement.setOnClickListener(new View.OnClickListener() {
+        buttonIncrement.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Increment();
+                increment();
             }
         });
 
-        btnDecrement.setOnClickListener(new View.OnClickListener() {
+        buttonDecrement.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Decrement();
+                decrement();
             }
         });
 
-        btnOrder.setOnClickListener(new View.OnClickListener() {
+        buttonOrder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                SubmitOrder();
+                submitOrder();
             }
         });
+
     }
 
-    private void SubmitOrder() {
+    /**
+     * This method is called when the order button is clicked.
+     */
+    public void submitOrder() {
         int price = quantity*5;
-        displayPrice(quantity);
+        displayPrice(price);
     }
 
+    public void increment() {
+        quantity = quantity + 1;
+        display(quantity);
+    }
+
+    public void decrement() {
+        if (quantity>0){
+            quantity = quantity - 1;
+            display(quantity);
+        }
+    }
+
+    /**
+     * This method displays the given quantity value on the screen.
+     */
+    private void display(int number) {
+        TextView quantityText = findViewById(R.id.textCups);
+        quantityText.setText("" + number);
+    }
+
+    /**
+     * This method displays the given price on the screen.
+     */
     private void displayPrice(int number) {
         TextView priceTextView = findViewById(R.id.textPrice);
 //        priceTextView.setText(NumberFormat.getCurrencyInstance().format(number));
         priceTextView.setText("KES " + number);
-    }
-
-    private void Decrement() {
-        if (quantity>0){
-            quantity= quantity-1;
-            display(quantity);
-        }
-
-    }
-
-    private void display(int number) {
-        TextView quantityText = findViewById(R.id.textCups);
-        quantityText.setText(number);
-    }
-
-    private void Increment() {
-        quantity= quantity+1;
-        display(quantity);
-
     }
 }
