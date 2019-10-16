@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">My Coffee</string>
+    <string name="subtractionsign">-</string>
+    <string name="additionsign">+</string>
+    <string name="welcome_to_coffee_shop">welcome_to_coffee_shop</string>
+    <string name="coffee_shop">coffee_shop</string>
+</resources>
